@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>骨架屏示例</title>
+        <style>
+            #skeleton-screen{
+                position: fixed;
+                top:0;
+                left:0;
+                width: 100%;
+                height: 100%;
+                z-index:9999;
+                display: flex;
+                flex-direction: column;
+                align-items:center;
+                transition: opacity 0.5s ease-in-out;
+            }
+            .show{
+                opacity: 1;
+            }
+            .hide{
+                opacity: 0;
+                pointer-events: none;
+            }
+            .skeleton-header{
+                height:60px;
+                background: rgba(7, 0, 0, 0.814);
+            }
+            .skeleton-content{
+                flex:1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .skeleton-item{
+                height: 50px;
+                margin-bottom: 10px;
+                background: rgba(14, 0, 0, 0.797);
+            }
+            .skeleton-footer{
+                height: 60px;
+                background:rgba(16, 1, 1, 0.778);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="skeleton-screen" class="show">
+            <div class="skeleton-header"></div>
+            <div class="skeleton-content">
+                <div class="skeleton-item"></div>
+                <div class="skeleton-item"></div>
+            </div>
+            <div class="skeleton-footer"></div>
+        </div>
+        <div id="real-content" class="hide">
+            123
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('skeleton-screen').classList.add('hide');
+                document.getElementById('real-content').classList.remove('hide');
+            });
+        </script>
+    </body>
+</html>
